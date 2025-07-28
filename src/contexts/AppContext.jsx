@@ -69,7 +69,7 @@ export const AppProvider = ({ children }) => {
     
     useEffect(() => {
         if (isAuthenticated) {
-            logAction('Login', 'User session started.');
+            logAction('Login', 'User session started.', currentUser?.name);
         }
     }, [isAuthenticated]);
 
@@ -95,12 +95,12 @@ export const AppProvider = ({ children }) => {
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
-        logAction('Theme Change', `Theme changed to ${newTheme}`);
+        logAction('Theme Change', `Theme changed to ${newTheme}`, currentUser?.name);
     };
 
     const addTransaction = (transaction) => {
         setTransactions([...transactions, { ...transaction, id: Date.now() }]);
-        logAction('Add Transaction', `${transaction.type}: ${transaction.description} ($${transaction.amount})`);
+        logAction('Add Transaction', `added ${transaction.type}: ${transaction.description} ($${transaction.amount})`, currentUser?.name || 'Unknown');
         showToast('Transaction added successfully!', 'success');
     };
     
@@ -108,14 +108,14 @@ export const AppProvider = ({ children }) => {
         const transactionToDelete = transactions.find(t => t.id === id);
         setTransactions(transactions.filter(t => t.id !== id));
         if (transactionToDelete) {
-             logAction('Delete Transaction', `Removed: ${transactionToDelete.description} ($${transactionToDelete.amount})`);
+             logAction('Delete Transaction', `removed: ${transactionToDelete.description} ($${transactionToDelete.amount})`, currentUser?.name || 'Unknown');
              showToast('Transaction deleted successfully.', 'success');
         }
     };
     
     const updateBudgets = (newBudgets) => {
         setBudgets(newBudgets);
-        logAction('Set Category Budget Limit', 'Budgets updated.');
+        logAction('Set Category Budget Limit', 'Budgets updated.', currentUser?.name);
         showToast('Budgets saved successfully!', 'success');
     };
 
@@ -128,7 +128,7 @@ export const AppProvider = ({ children }) => {
         if (newCategory) {
             setExpenseCategories(prev => [...prev, newCategory]);
             setBudgets(prev => ({...prev, [newCategory]: budget || 0}));
-            logAction('Add Custom Expense Category', `Added category: ${newCategory} with budget $${budget || 0}`);
+            logAction('Add Custom Expense Category', `added category: ${newCategory} with budget $${budget || 0}`, currentUser?.name || 'Unknown');
             showToast('Custom expense category added!', 'success');
         }
     };
@@ -144,7 +144,7 @@ export const AppProvider = ({ children }) => {
             delete newBudgets[categoryToDelete];
             return newBudgets;
         });
-        logAction('Delete Custom Expense Category', `Deleted category: ${categoryToDelete}`);
+        logAction('Delete Custom Expense Category', `deleted category: ${categoryToDelete}`, currentUser?.name || 'Unknown');
         showToast('Custom expense category removed.', 'success');
     };
 
@@ -156,7 +156,7 @@ export const AppProvider = ({ children }) => {
         const newCategory = categoryName.trim();
         if (newCategory) {
             setIncomeCategories(prev => [...prev, newCategory]);
-            logAction('Add Custom Income Category', `Added category: ${newCategory}`);
+            logAction('Add Custom Income Category', `added category: ${newCategory}`, currentUser?.name || 'Unknown');
             showToast('Custom income category added!', 'success');
         }
     };
@@ -167,7 +167,7 @@ export const AppProvider = ({ children }) => {
             return;
         }
         setIncomeCategories(prev => prev.filter(cat => cat !== categoryToDelete));
-        logAction('Delete Custom Income Category', `Deleted category: ${categoryToDelete}`);
+        logAction('Delete Custom Income Category', `deleted category: ${categoryToDelete}`, currentUser?.name || 'Unknown');
         showToast('Custom income category removed.', 'success');
     };
 
@@ -192,7 +192,7 @@ export const AppProvider = ({ children }) => {
         }
 
         if (changes.length > 0) {
-            logAction('Profile Updated', `User profile updated: ${changes.join(', ')}.`);
+            logAction('Profile Updated', `profile updated: ${changes.join(', ')}`, currentUser?.name || 'Unknown');
         }
         showToast('Profile updated successfully!', 'success');
     };
@@ -207,18 +207,18 @@ export const AppProvider = ({ children }) => {
             return;
         }
         setCollaborators(prev => [...prev, email]);
-        logAction('Collaborator Added', `Added collaborator: ${email}`);
+        logAction('Collaborator Added', `added collaborator: ${email}`, currentUser?.name || 'Unknown');
         showToast('Collaborator added successfully!', 'success');
     };
     
     const handleRemoveCollaborator = (emailToRemove) => {
         setCollaborators(prev => prev.filter(email => email !== emailToRemove));
-        logAction('Collaborator Removed', `Removed collaborator: ${emailToRemove}`);
+        logAction('Collaborator Removed', `removed collaborator: ${emailToRemove}`, currentUser?.name || 'Unknown');
         showToast('Collaborator removed.', 'success');
     };
 
     const handleResetCollaboratorPassword = (email) => {
-        logAction('Collaborator Password Reset', `Password reset initiated for: ${email}`);
+        logAction('Collaborator Password Reset', `password reset initiated for: ${email}`, currentUser?.name || 'Unknown');
         showToast(`Password reset link sent to ${email}.`, 'info');
     };
 
@@ -232,6 +232,7 @@ export const AppProvider = ({ children }) => {
             email: user.email,
         });
         setIsAuthenticated(true);
+        logAction('Login', 'session started', user.name);
         showToast(`Welcome back, ${user.name}!`, 'success');
     };
     
@@ -240,7 +241,7 @@ export const AppProvider = ({ children }) => {
     };
 
     const handleLogout = () => {
-        logAction('Logout', 'User session has ended.');
+        logAction('Logout', 'session has ended', currentUser?.name || 'Unknown');
         showToast('Logging out...', 'info');
         setTimeout(() => {
             clearUser(); // Clears the session user, not the "database"
@@ -250,7 +251,7 @@ export const AppProvider = ({ children }) => {
     };
 
     const clearTransactions = (period) => {
-        logAction('Clear Financial Records', `Cleared records for period: ${period}.`);
+        logAction('Clear Financial Records', `cleared records for period: ${period}`, currentUser?.name || 'Unknown');
 
         if (period === 'all') {
             setTransactions([]);
@@ -285,7 +286,7 @@ export const AppProvider = ({ children }) => {
     };
 
     const handleDeleteAccount = () => {
-        logAction('Account Deleted', 'User has deleted their account and all data.');
+        logAction('Account Deleted', 'user has deleted their account and all data', currentUser?.name || 'Unknown');
         clearAllData();
         showToast('Account and all data successfully deleted. The application will now reload.', 'success');
         setTimeout(() => {
