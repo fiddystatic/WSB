@@ -1,0 +1,105 @@
+/* Chart */
+.chart-container {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.budget-alerts {
+    margin-top: 1.5rem;
+}
+
+.card .ai-response {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+}
+
+.card .ai-response div {
+    white-space: normal;
+}
+
+.card .ai-response h1,
+.card .ai-response h2,
+.card .ai-response h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card .ai-response ul,
+.card .ai-response ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card .ai-response li {
+    margin-bottom: 0.5rem;
+}
+
+.card .ai-response p {
+    margin-bottom: 1rem;
+}
+
+.card .ai-response p:last-child {
+    margin-bottom: 0;
+}
+
+.spinner-small-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.spinner-small {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* New Analytics Chart Styles */
+.comparison-charts {
+    margin-top: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.analytics-chart-container {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.analytics-chart-container h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 300px; /* Default height */
+}
+
+.no-data-analytics {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+}

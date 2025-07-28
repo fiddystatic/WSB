@@ -1,0 +1,112 @@
+/* Transaction Form */
+.transaction-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.transaction-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.transaction-form input,
+.transaction-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Transaction List */
+.transaction-list ul {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.transaction-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+}
+.transaction-list li:last-child {
+    border-bottom: none;
+}
+.transaction-list li:hover {
+    background-color: var(--background-color);
+}
+
+.transaction-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.type-indicator {
+    width: 8px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.type-indicator.income { background-color: var(--success-color); }
+.type-indicator.expense { background-color: var(--danger-color); }
+
+.desc-category .desc {
+    font-weight: 500;
+}
+.desc-category .category {
+    font-size: 0.8rem;
+    color: #888;
+    background-color: var(--background-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.amount-date {
+    text-align: right;
+}
+
+.amount-date .amount {
+    font-weight: 600;
+}
+.amount.income { color: var(--success-color); }
+.amount.expense { color: var(--danger-color); }
+
+.amount-date .date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+body.dark .amount-date .date,
+body.dark .desc-category .category {
+    color: #aaa;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 1rem;
+}
+
+.transaction-list li:hover .delete-btn {
+    opacity: 1;
+}

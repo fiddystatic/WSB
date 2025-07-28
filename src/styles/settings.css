@@ -1,0 +1,73 @@
+.settings-card.with-edge-style {
+    border-left: 5px solid var(--primary-color);
+}
+
+.settings-card .settings-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.budget-manager {
+    margin-top: 1rem;
+}
+
+.budget-manager-card p {
+    margin-bottom: 0.5rem;
+}
+
+.budget-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.budget-manager .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.budget-manager label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.budget-manager input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.budget-manager input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.clear-data-section {
+    border: 1px solid var(--danger-color);
+    background-color: #fff1f0;
+}
+
+body.dark .clear-data-section {
+    background-color: #4d1f1c;
+    border-color: #a6271a;
+}
+
+.clear-data-section h2 {
+    color: var(--danger-color);
+}
+
+.clear-data-section p {
+    color: var(--danger-color);
+}
+
+body.dark .clear-data-section p {
+    color: #ffccc7;
+}

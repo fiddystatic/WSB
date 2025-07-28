@@ -1,0 +1,40 @@
+.summary-container {
+    grid-area: summary;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.summary-card {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary-color);
+}
+
+.summary-card.income { border-color: var(--success-color); }
+.summary-card.expense { border-color: var(--danger-color); }
+.summary-card.balance { border-color: var(--secondary-color); }
+
+.summary-card h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #888;
+}
+
+body.dark .summary-card h3 {
+    color: #aaa;
+}
+
+.summary-card p {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.summary-card p.income { color: var(--success-color); }
+.summary-card p.expense { color: var(--danger-color); }
+.summary-card p.balance { color: var(--secondary-color); }
+

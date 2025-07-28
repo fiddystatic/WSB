@@ -1,0 +1,10 @@
+@import url('./src/styles/base.css');
+@import url('./src/styles/layout.css');
+@import url('./src/styles/auth.css');
+@import url('./src/styles/components.css');
+@import url('./src/styles/summary.css');
+@import url('./src/styles/transactions.css');
+@import url('./src/styles/visuals.css');
+@import url('./src/styles/settings.css');
+@import url('./src/styles/modals.css');
+@import url('./src/styles/responsive.css');
